@@ -24,7 +24,8 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      // メイン画面タイトル
+      home: const MyHomePage(title: 'Flutter Demo Home Page Sample'),
     );
   }
 }
@@ -96,7 +97,8 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Text(
-              'You have pushed the button this many times:',
+              // メインウィンドウのメッセージ
+              'You have pushed the button this many times: 😁',
             ),
             Text(
               '$_counter',
