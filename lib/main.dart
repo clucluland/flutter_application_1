@@ -48,15 +48,17 @@ class _MyHomePageState extends State<MyHomePage> {
         actions: <Widget>[Icon(Icons.add), Icon(Icons.share)],
       ),
       body: Container(
-        height: 160,
+        height: double.infinity, // ボディ全体
+        // width: 120,
         color: Colors.green,
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(16.0), // エリア内、周りの間隔
           child: Row(
             children: <Widget>[
               Text('data'),
               Text('data2'),
               Text('data3'),
+              Text('$_counter'),
             ],
           ),
         ),
