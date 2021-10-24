@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/next_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,7 +17,18 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       // メイン画面タイトル
-      home: const MyHomePage(title: 'Flutter Demo Home Page Sample'),
+      // home: const MyHomePage(title: 'Flutter Demo Home Page Sample'),
+
+      // 画面遷移(ルート)の指定
+      initialRoute: '/',
+      routes: {
+        // When navigating to the "/" route, build the FirstScreen widget.
+        '/': (context) => const MyHomePage(
+              title: 'Flutter Study',
+            ),
+        // When navigating to the "/second" route, build the SecondScreen widget.
+        '/next': (context) => const NextPage(),
+      },
     );
   }
 }
@@ -45,23 +57,26 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
         // 試しにタイトルにアイコン追加
-        actions: <Widget>[Icon(Icons.add), Icon(Icons.share)],
+        // ignore: prefer_const_literals_to_create_immutables
+        actions: <Widget>[const Icon(Icons.add), const Icon(Icons.share)],
       ),
-      body: Container(
-        height: double.infinity, // ボディ全体
-        // width: 120,
-        color: Colors.green,
-        child: Padding(
-          padding: const EdgeInsets.all(16.0), // エリア内、周りの間隔
-          child: Row(
-            children: <Widget>[
-              Text('data'),
-              Text('data2'),
-              Text('data3'),
-              Text('$_counter'),
-            ],
-          ),
-        ),
+      body: Center(
+        child: ElevatedButton(
+            onPressed: () {
+              Navigator.pushNamed(context, '/next');
+            },
+            // MyAppでルートを指定しない場合は以下のコード
+            // onPressed: () {
+            //   // ボタンを押したとき
+            //   // 画面遷移
+            //   Navigator.push(
+            //     context,
+            //     MaterialPageRoute(
+            //       builder: (context) => const NextPage(),
+            //     ),
+            //   );
+            // },
+            child: const Text('次の画面')),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
