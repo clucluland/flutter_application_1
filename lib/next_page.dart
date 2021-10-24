@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class NextPage extends StatelessWidget {
-  const NextPage({Key? key}) : super(key: key);
+  // ignore: use_key_in_widget_constructors
+  const NextPage(this.name);
+  final String name;
 
   @override
   Widget build(BuildContext context) {
@@ -12,15 +14,21 @@ class NextPage extends StatelessWidget {
       ),
       body: Container(
         height: double.infinity,
-        color: Colors.deepOrange,
-        child: Center(
-          child: ElevatedButton(
-              onPressed: () {
-                // ボタンを押したとき
-                // 呼び元に戻る
-                Navigator.pop(context);
-              },
-              child: const Text('前の画面')),
+        color: Colors.teal[100],
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(name),
+            Center(
+              child: ElevatedButton(
+                  onPressed: () {
+                    // ボタンを押したとき
+                    // 呼び元に戻る
+                    Navigator.pop(context, 'hoihoi');
+                  },
+                  child: const Text('前の画面')),
+            ),
+          ],
         ),
       ),
     );

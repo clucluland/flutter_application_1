@@ -17,18 +17,18 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       // メイン画面タイトル
-      // home: const MyHomePage(title: 'Flutter Demo Home Page Sample'),
+      home: const MyHomePage(title: 'Flutter Demo Home Page Sample'),
 
-      // 画面遷移(ルート)の指定
-      initialRoute: '/',
-      routes: {
-        // When navigating to the "/" route, build the FirstScreen widget.
-        '/': (context) => const MyHomePage(
-              title: 'Flutter Study',
-            ),
-        // When navigating to the "/second" route, build the SecondScreen widget.
-        '/next': (context) => const NextPage(),
-      },
+      // // 画面遷移(ルート)の指定
+      // initialRoute: '/',
+      // routes: {
+      //   // When navigating to the "/" route, build the FirstScreen widget.
+      //   '/': (context) => const MyHomePage(
+      //         title: 'Flutter Study',
+      //       ),
+      //   // When navigating to the "/second" route, build the SecondScreen widget.
+      //   '/next': (context) => const NextPage(),
+      // },
     );
   }
 }
@@ -51,6 +51,8 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  late String buttonText = '次画面へ';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,21 +64,28 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Center(
         child: ElevatedButton(
-            onPressed: () {
-              Navigator.pushNamed(context, '/next');
-            },
-            // MyAppでルートを指定しない場合は以下のコード
-            // onPressed: () {
-            //   // ボタンを押したとき
-            //   // 画面遷移
-            //   Navigator.push(
-            //     context,
-            //     MaterialPageRoute(
-            //       builder: (context) => const NextPage(),
-            //     ),
-            //   );
-            // },
-            child: const Text('次の画面')),
+          // // MyAppでルートを指定
+          // onPressed: () {
+          //   Navigator.pushNamed(context, '/next');
+          // },
+
+          // MyAppでルートを指定しない場合は以下のコード
+          // 'async'-'await' を入れなければ非同期でコードが走る
+          onPressed: () async {
+            // ボタンを押したとき
+            // 画面遷移
+            final result = await Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const NextPage('次画面 実験'),
+              ),
+            );
+            buttonText = result;
+            // デバッグコンソールに出力
+            debugPrint('結果 : $result');
+          },
+          child: Text(buttonText),
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
