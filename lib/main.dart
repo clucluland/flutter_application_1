@@ -62,29 +62,47 @@ class _MyHomePageState extends State<MyHomePage> {
         // ignore: prefer_const_literals_to_create_immutables
         actions: <Widget>[const Icon(Icons.add), const Icon(Icons.share)],
       ),
-      body: Center(
-        child: ElevatedButton(
-          // // MyAppでルートを指定
-          // onPressed: () {
-          //   Navigator.pushNamed(context, '/next');
-          // },
+      body: SizedBox(
+        width: double.infinity,
+        child: Column(
+          // カラム内センタリング
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            // イメージ
+            // Image.network(
+            //     'https://m.media-amazon.com/images/I/51F6HWP4FYL._AC_.jpg'),
+            Image.asset('images/clucluland.jpg'),
+            const Icon(
+              Icons.share,
+              color: Colors.pink,
+              size: 64,
+            ),
+            // ボタン
+            ElevatedButton(
+              // // MyAppでルートを指定
+              // onPressed: () {
+              //   Navigator.pushNamed(context, '/next');
+              // },
 
-          // MyAppでルートを指定しない場合は以下のコード
-          // 'async'-'await' を入れなければ非同期でコードが走る
-          onPressed: () async {
-            // ボタンを押したとき
-            // 画面遷移
-            final result = await Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const NextPage('次画面 実験'),
-              ),
-            );
-            buttonText = result;
-            // デバッグコンソールに出力
-            debugPrint('結果 : $result');
-          },
-          child: Text(buttonText),
+              // MyAppでルートを指定しない場合は以下のコード
+              // 'async'-'await' を入れなければ非同期でコードが走る
+              onPressed: () async {
+                // ボタンを押したとき
+                // 画面遷移
+                final result = await Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const NextPage('次画面 実験'),
+                  ),
+                );
+                buttonText = result;
+                // デバッグコンソールに出力
+                debugPrint('結果 : $result');
+              },
+              child: Text(buttonText),
+            ),
+          ],
         ),
       ),
       floatingActionButton: FloatingActionButton(

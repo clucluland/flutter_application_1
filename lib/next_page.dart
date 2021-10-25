@@ -16,6 +16,7 @@ class NextPage extends StatelessWidget {
         height: double.infinity,
         color: Colors.teal[100],
         child: Column(
+          // カラム内センタリング
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(name),
