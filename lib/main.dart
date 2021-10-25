@@ -68,16 +68,44 @@ class _MyHomePageState extends State<MyHomePage> {
           // カラム内センタリング
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
+          children: <Widget>[
+            SizedBox(
+              width: double.infinity,
+              child: Text(
+                'clucluland',
+                textAlign: TextAlign.left,
+                // テキスト装飾をまとめて行う
+                style: TextStyle(
+                  fontSize: 30.0,
+                  // color: Colors.purpleAccent,
+                  // fontWeight: FontWeight.bold,
+                  // fontStyle: FontStyle.italic,
+                  // decoration: TextDecoration.lineThrough,
+                  foreground: Paint()
+                    ..style = PaintingStyle.stroke
+                    ..strokeWidth = 3
+                    ..color = Colors.pink[700]!,
+                ),
+              ),
+            ),
+            DefaultTextStyle(
+              style: const TextStyle(
+                fontSize: 36.0,
+                color: Colors.deepOrange,
+              ),
+              child: Column(
+                children: const <Widget>[
+                  Text('tada'),
+                  Text('sugiyama'),
+                  Text('shingu'),
+                ],
+              ),
+            ),
+            const Text('mario'),
             // イメージ
             // Image.network(
             //     'https://m.media-amazon.com/images/I/51F6HWP4FYL._AC_.jpg'),
             Image.asset('images/clucluland.jpg'),
-            const Icon(
-              Icons.share,
-              color: Colors.pink,
-              size: 64,
-            ),
             // ボタン
             ElevatedButton(
               // // MyAppでルートを指定
