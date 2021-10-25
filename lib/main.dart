@@ -68,7 +68,19 @@ class _MyHomePageState extends State<MyHomePage> {
           // カラム内センタリング
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
+
           children: [
+            TextFormField(
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Please enter some text';
+                }
+                return null;
+              },
+              autofocus: true,
+              decoration: const InputDecoration(
+                  border: OutlineInputBorder(), hintText: "文字を入力してください"),
+            ),
             // イメージ
             // Image.network(
             //     'https://m.media-amazon.com/images/I/51F6HWP4FYL._AC_.jpg'),
