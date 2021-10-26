@@ -53,6 +53,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   late String buttonText = '次画面へ';
 
+  final myFocusNode = FocusNode();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -77,9 +79,19 @@ class _MyHomePageState extends State<MyHomePage> {
                 }
                 return null;
               },
+              // オートフォーカス
               autofocus: true,
               decoration: const InputDecoration(
                   border: OutlineInputBorder(), hintText: "文字を入力してください"),
+            ),
+            TextFormField(
+              decoration: const InputDecoration(
+                  border: OutlineInputBorder(), hintText: '2Text'),
+              focusNode: myFocusNode,
+            ),
+            ElevatedButton(
+              onPressed: () => myFocusNode.requestFocus(),
+              child: const Text('フォーカスセット'),
             ),
             // イメージ
             // Image.network(
