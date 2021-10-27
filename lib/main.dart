@@ -55,8 +55,14 @@ class _MyHomePageState extends State<MyHomePage> {
 
   final myFocusNode = FocusNode();
 
+  late String name;
+
+  final myController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
+    final _passwordFocusNode = FocusNode(); // 追加
+
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
@@ -81,13 +87,27 @@ class _MyHomePageState extends State<MyHomePage> {
               },
               // オートフォーカス
               autofocus: true,
+              textInputAction: TextInputAction.next, // Done → Next
               decoration: const InputDecoration(
                   border: OutlineInputBorder(), hintText: "文字を入力してください"),
+              onFieldSubmitted: (_) {
+                FocusScope.of(context).requestFocus(_passwordFocusNode);
+              },
+              focusNode: myFocusNode,
+              onChanged: (text) {
+                // // ignore: avoid_print
+                // print('First text field: $text');
+                name = text;
+              },
             ),
             TextFormField(
+              controller: myController,
               decoration: const InputDecoration(
-                  border: OutlineInputBorder(), hintText: '2Text'),
-              focusNode: myFocusNode,
+                  labelText: 'password',
+                  border: OutlineInputBorder(),
+                  hintText: 'password'),
+              obscureText: true,
+              focusNode: _passwordFocusNode,
             ),
             ElevatedButton(
               onPressed: () => myFocusNode.requestFocus(),
@@ -100,7 +120,7 @@ class _MyHomePageState extends State<MyHomePage> {
             const Icon(
               Icons.share,
               color: Colors.pink,
-              size: 64,
+              size: 16,
             ),
             // ボタン
             ElevatedButton(
@@ -125,6 +145,21 @@ class _MyHomePageState extends State<MyHomePage> {
                 debugPrint('結果 : $result');
               },
               child: Text(buttonText),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      // Retrieve the text the user has entered by using the
+                      // TextEditingController.
+                      content: Text(myController.text),
+                    );
+                  },
+                );
+              },
+              child: const Text('Show Dialog'),
             ),
           ],
         ),
