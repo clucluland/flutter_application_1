@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/next_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -31,41 +32,44 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
         // 試しにタイトルにアイコン追加
-        actions: <Widget>[Icon(Icons.add), Icon(Icons.share)],
+        // ignore: prefer_const_literals_to_create_immutables
+        actions: <Widget>[const Icon(Icons.add), const Icon(Icons.share)],
       ),
-      body: Container(
-        height: 160,
-        color: Colors.green,
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Row(
-            children: <Widget>[
-              Text('data'),
-              Text('data2'),
-              Text('data3'),
-            ],
-          ),
+      body: SizedBox(
+        width: double.infinity,
+        child: ListView(
+          children: <Widget>[
+            const ListTile(
+              leading: Icon(Icons.map),
+              title: Text('Map'),
+              trailing: Text('Left Text'),
+            ),
+            ListTile(
+              leading: const Icon(Icons.info),
+              title: const Text('Information'),
+              trailing: const Icon(Icons.arrow_forward_ios),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const NextPage('from ListView')),
+                );
+              },
+            ),
+            const ListTile(
+              leading: Icon(Icons.phone),
+              title: Text('Phone'),
+            ),
+            const Text('TestRow'),
+          ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
