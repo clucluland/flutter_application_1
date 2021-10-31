@@ -32,6 +32,9 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  final items = List<String>.generate(10000, (i) => "Item $i");
+  final items2 = ['clucluland', 'mario', 'xevious', 'gradius'];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,34 +45,43 @@ class _MyHomePageState extends State<MyHomePage> {
         actions: <Widget>[const Icon(Icons.add), const Icon(Icons.share)],
       ),
       body: SizedBox(
-        width: double.infinity,
-        child: ListView(
-          children: <Widget>[
-            const ListTile(
-              leading: Icon(Icons.map),
-              title: Text('Map'),
-              trailing: Text('Left Text'),
-            ),
-            ListTile(
-              leading: const Icon(Icons.info),
-              title: const Text('Information'),
-              trailing: const Icon(Icons.arrow_forward_ios),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const NextPage('from ListView')),
-                );
-              },
-            ),
-            const ListTile(
-              leading: Icon(Icons.phone),
-              title: Text('Phone'),
-            ),
-            const Text('TestRow'),
-          ],
-        ),
-      ),
+          width: double.infinity,
+          child: ListView.builder(
+            itemCount: items.length,
+            itemBuilder: (context, index) {
+              return ListTile(
+                title: Text('>>' + items[index]),
+              );
+            },
+          )
+          // // ListViewを固定で出力
+          // child: ListView(
+          //   children: <Widget>[
+          //     const ListTile(
+          //       leading: Icon(Icons.map),
+          //       title: Text('Map'),
+          //       trailing: Text('Left Text'),
+          //     ),
+          //     ListTile(
+          //       leading: const Icon(Icons.info),
+          //       title: const Text('Information'),
+          //       trailing: const Icon(Icons.arrow_forward_ios),
+          //       onTap: () {
+          //         Navigator.push(
+          //           context,
+          //           MaterialPageRoute(
+          //               builder: (context) => const NextPage('from ListView')),
+          //         );
+          //       },
+          //     ),
+          //     const ListTile(
+          //       leading: Icon(Icons.phone),
+          //       title: Text('Phone'),
+          //     ),
+          //     const Text('TestRow'),
+          //   ],
+          // ),
+          ),
     );
   }
 }
