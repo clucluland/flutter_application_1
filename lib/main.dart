@@ -45,69 +45,106 @@ class _MyHomePageState extends State<MyHomePage> {
         actions: <Widget>[const Icon(Icons.add), const Icon(Icons.share)],
       ),
       body: SizedBox(
-        width: double.infinity,
+          width: double.infinity,
 
-        // GridView の使い方
-        child: GridView.count(
-          crossAxisCount: 3,
-          children: List.generate(100, (index) {
-            return Column(
-              children: <Widget>[
-                // Expanded で囲むことによりはみ出さない
-                Expanded(
-                  child: Image.network(
-                      'https://m.media-amazon.com/images/I/31QQzrtbIjL._SS135_.jpg'),
-                ),
-                Text('$index'),
-              ],
-            );
-            // return Center(
-            //   child: Text(
-            //     'Item $index',
-            //     style: Theme.of(context).textTheme.headline5,
-            //   ),
-            // );
-          }),
-        ),
+          // 横スクロールの ListView
+          child: ListView(
+            // This next line does the trick.
+            scrollDirection: Axis.horizontal,
+            children: <Widget>[
+              Column(
+                children: <Widget>[
+                  Expanded(
+                    child: Image.network(
+                        'https://m.media-amazon.com/images/I/31QQzrtbIjL._SS135_.jpg'),
+                  ),
+                  const Text('Text Msg'),
+                ],
+              ),
+              Container(
+                width: 160.0,
+                color: Colors.red,
+              ),
+              Container(
+                width: 160.0,
+                color: Colors.blue,
+              ),
+              Container(
+                width: 160.0,
+                color: Colors.green,
+              ),
+              Container(
+                width: 160.0,
+                color: Colors.yellow,
+              ),
+              Container(
+                width: 160.0,
+                color: Colors.orange,
+              ),
+            ],
+          )
 
-        // // ListView を builder で
-        // child: ListView.builder(
-        //   itemCount: items.length,
-        //   itemBuilder: (context, index) {
-        //     return ListTile(
-        //       title: Text('>>' + items[index]),
-        //     );
-        //   },
-        // )
+          // // GridView の使い方
+          // child: GridView.count(
+          //   crossAxisCount: 3,
+          //   children: List.generate(100, (index) {
+          //     return Column(
+          //       children: <Widget>[
+          //         // Expanded で囲むことによりはみ出さない
+          //         Expanded(
+          //           child: Image.network(
+          //               'https://m.media-amazon.com/images/I/31QQzrtbIjL._SS135_.jpg'),
+          //         ),
+          //         Text('$index'),
+          //       ],
+          //     );
+          //     // return Center(
+          //     //   child: Text(
+          //     //     'Item $index',
+          //     //     style: Theme.of(context).textTheme.headline5,
+          //     //   ),
+          //     // );
+          //   }),
+          // ),
 
-        // // ListViewを固定で出力
-        // child: ListView(
-        //   children: <Widget>[
-        //     const ListTile(
-        //       leading: Icon(Icons.map),
-        //       title: Text('Map'),
-        //       trailing: Text('Left Text'),
-        //     ),
-        //     ListTile(
-        //       leading: const Icon(Icons.info),
-        //       title: const Text('Information'),
-        //       trailing: const Icon(Icons.arrow_forward_ios),
-        //       onTap: () {
-        //         Navigator.push(
-        //           context,
-        //           MaterialPageRoute(
-        //               builder: (context) => const NextPage('from ListView')),
-        //         );
-        //       },
-        //     ),
-        //     const ListTile(
-        //       leading: Icon(Icons.phone),
-        //       title: Text('Phone'),
-        //     ),
-        //     const Text('TestRow'),
-        //   ],
-        // ),
-      ),
+          // // ListView を builder で
+          // child: ListView.builder(
+          //   itemCount: items.length,
+          //   itemBuilder: (context, index) {
+          //     return ListTile(
+          //       title: Text('>>' + items[index]),
+          //     );
+          //   },
+          // )
+
+          // // ListViewを固定で出力
+          // child: ListView(
+          //   children: <Widget>[
+          //     const ListTile(
+          //       leading: Icon(Icons.map),
+          //       title: Text('Map'),
+          //       trailing: Text('Left Text'),
+          //     ),
+          //     ListTile(
+          //       leading: const Icon(Icons.info),
+          //       title: const Text('Information'),
+          //       trailing: const Icon(Icons.arrow_forward_ios),
+          //       onTap: () {
+          //         Navigator.push(
+          //           context,
+          //           MaterialPageRoute(
+          //               builder: (context) => const NextPage('from ListView')),
+          //         );
+          //       },
+          //     ),
+          //     const ListTile(
+          //       leading: Icon(Icons.phone),
+          //       title: Text('Phone'),
+          //     ),
+          //     const Text('TestRow'),
+          //   ],
+          // ),
+          ),
     );
   }
 }
